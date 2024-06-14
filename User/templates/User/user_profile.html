@@ -1,0 +1,152 @@
+{#{% extends './base.html' %}#}
+{#{% block body_block %}#}
+{#    <br><br><br>#}
+{#    <h2>{{ profile.username }}'s Profile</h2>#}
+{#    <p>Email: {{ profile.email }}</p>#}
+{#{% endblock %}#}
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container-xl px-4 mt-4">
+{#        <!-- Account page navigation-->#}
+{#        <nav class="nav nav-borders">#}
+{#            <a class="nav-link active ms-0" href="{% url 'user_profile' %}" style="color: orangered;">Profile</a>#}
+{#            <a class="nav-link" href=""  style="color: orangered;">Order History</a>#}
+{#            <!-- <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-security-page" target="__blank">Security</a> -->#}
+{#            <!-- <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-edit-notifications-page"  target="__blank">Notifications</a> -->#}
+{#        </nav>#}
+{#        <hr class="mt-0 mb-4">#}
+
+
+
+        <div class="row">
+            <div class="col-xl-4">
+
+                <div class="card mb-4">
+                    <div class="card-header">Account Details</div>
+                    <div class="card-body">
+                        <form>
+                            <!-- Form Group (username)-->
+                            <div class="mb-3">
+
+                            </div>
+                            <!-- Form Row-->
+                            <div class="row gx-3 mb-3">
+
+                                <div class="col-md-6">
+                                   <label class="small mb-1" for="inputUsername">Username </label>
+                                    <h4 class="form-control" id="inputUsername" type="text">{{ profile.username }}</h4>
+                                </div>
+                                <!-- Form Group (first name)-->
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputFirstName">Name</label>
+                                    <h4 class="form-control" id="inputFirstname" >{{ profile.first_name }}</h4>
+
+                                </div>
+
+                            </div>
+                            <!-- Form Row        -->
+                            <div class="row gx-3 mb-3">
+
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputEmailAddress">Email address</label>
+                                    <h4 class="form-control" id="inputEmailAddress" >{{ profile.email }}</h4>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Save changes button-->
+{#                            <a href="">#}
+{#                            <button class="cr-button mt-30" type="button">Edit</button>#}
+{#                            </a>#}
+                        </form>
+                    </div>
+                </div>
+
+
+                {% if login_history %}
+                    <div class="card mb-4">
+                        <div class="card-header">Login Details</div>
+                        <div class="card-body">
+                        <table>
+                          <thead>
+                            <tr>
+                              <th></th>
+                            </tr>
+                          </thead>
+
+
+                          <tbody>
+                          {% for logins in login_history %}
+                            <tr>
+                              <td data-label="Timestamp">{{ logins.login_time }}</td>
+                            </tr>
+                          {% endfor %}
+                          </tbody>
+                        </table>
+                        </div>
+                    </div>
+                {% endif %}
+
+            </div>
+
+            <div class="col-xl-8">
+                <!-- Account details card-->
+            <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="mb-30" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
+                        <div class="cr-banner" >
+                            <h2 style="color:green;">Video Upload History</h2>
+                        </div>
+                        <div class="cr-banner-sub-title">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div>
+{% for video in videos %}
+                    <div class="col-12 mb-30" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col">
+{#                                        <b class="font-weight-bold"> March 17, 2024</b>#}
+{#                                        <span class="font-weight-bold"> | </span>#}
+{#                                        <span class="font-weight-bold">Order ID :</span> 123456789#}
+{#                                        <span class="font-weight-bold"> | </span>#}
+                                        <span class="font-weight-bold">Video Title: {{ video.title }} </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Uploaded On : {{ video.upload_date }}</p>
+                                <p class="card-text">Predatory Mites Found : {{ video.predatory_mites }}</p>
+                                <p class="card-text">Feeder Mites Found : {{ video.feeder_mites }}</p>
+                            </div>
+                            <video width="640" height="360" controls>
+                              <source src={{ video.video_file.url }} type="video/mp4">
+                              Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+
+{% endfor %}
+
+            </div>
+
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

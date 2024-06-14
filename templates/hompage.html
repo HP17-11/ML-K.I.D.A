@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{%  load static %}
+{% block content %}
+
+{#        <div class="previous-videos-container_bg">#}
+{##}
+{#            <div class="previous-videos-container">#}
+{#                <h2>Previous Videos</h2>#}
+{#                <!-- Display list of previous videos with timestamps -->#}
+{#                <div class="video-item">#}
+{#                    <video width="320" height="240" controls>#}
+{#                        <source src="{% static 'previous_video.mp4' %}" type="video/mp4">#}
+{#                        Your browser does not support the video tag.#}
+{#                    </video>#}
+{#                    <p>Uploaded on: <span>Timestamp</span></p>#}
+{##}
+{#                    <table>#}
+{#                      <thead>#}
+{#                        <tr>#}
+{#                          <th>Video Name</th>#}
+{#                          <th>Timestamp</th>#}
+{#                          <th>Predatory mites count</th>#}
+{#                        </tr>#}
+{#                      </thead>#}
+{#                      <tbody>#}
+{#                        <tr>#}
+{#                          <td data-label="Video Name">Video1</td>#}
+{#                          <td data-label="Timestamp">14 March 2024 7:35</td>#}
+{#                          <td data-label="Predatory mites count">25</td>#}
+{#                        </tr>#}
+{#                        <tr>#}
+{#                          <td data-label="Video Name">Video2</td>#}
+{#                          <td data-label="Timestamp">12 March 2024 17:30</td>#}
+{#                          <td data-label="Predatory mites count">30</td>#}
+{#                        </tr>#}
+{#                        <tr>#}
+{#                          <td data-label="Video Name">Video3</td>#}
+{#                          <td data-label="Timestamp">10 March 2024 12:15</td>#}
+{#                          <td data-label="Predatory mites count">20</td>#}
+{#                        </tr>#}
+{#                      </tbody>#}
+{#                    </table>#}
+{#                </div>#}
+{#                <!-- Repeat the above block for each previous video -->#}
+{#            </div>#}
+{##}
+{#        </div>#}
+
+
+    <section class="section-about padding-tb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="cr-about"  data-aos-duration="2000" data-aos-delay="400">
+                    <h4 class="heading" style="color:green;">Count The Mites</h4>
+                    <div class="cr-about-content">
+                        <h5>ML K.I.D.A</h5>
+                        <h5>[Kinetic Motion Insects detection Algorithm]</h5>
+                        <br>
+                        <p> Automated Mites Counting Algorithm, Delivering Accurate Results :)</p>
+                        <p> Reducing Manual Labour and Human Error!!!</p>
+                                    
+                        <div class="card mb-4 mb-xl-0">
+                                <div class="card-header">Upload a video from your Computer here!</div>
+                                <form method="post" enctype="multipart/form-data" id="myform" action="">
+                                    {% csrf_token %}
+                                <div class="card-body text-center">
+                                    <div class="center " style="" >
+                                        {{ form }}
+                                        <button type="submit" class="cr-button mt-30" style="background-color: goldenrod; border: yellow; ">Upload</button>
+                                    </div>
+                                </div>
+                                </form>
+                        </div>
+{#                        {% if processing %}#}
+{#                            <h1> processing it right away </h1>#}
+{#                        <div class="processing-message">#}
+{#                            <p>Processing the video...</p>#}
+{#                            <div class="spinner-border text-primary" role="status">#}
+{#                                <span class="sr-only">Processing...</span>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                         {% else %}#}
+{#                            <h1>video done</h1>#}
+{#                        {% endif %}#}
+                        {% if file %}
+                            <div class="elementor-counter">
+                                <div class="card-header" style="padding-bottom: 30px;"><h4 style="color: darkgreen; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif">Results:</h4></div>
+                                <div class="row">
+                                    <div class="col-sm-4 col-12 margin-575" style="margin-left: 60px;">
+                                        <h4 class="elementor">
+                                            <span class="elementor-counter-number">{{ file.predatory_mites }}</span>
+
+                                        </h4>
+                                        <div class="elementor-counter-title" style="margin-right: 10px;">
+                                            <span>Predatory Mites</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-12 margin-575" style="margin-left: 100px;">
+                                        <h4 class="elementor" >
+                                            <span class="elementor-counter-number">{{ file.feeder_mites }}</span>
+
+                                        </h4>
+                                        <div class="elementor-counter-title">
+                                            <span>Feeder Mites</span>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-sm-4 col-12 margin-575">
+                                        <h4 class="elementor">
+                                            <span class="elementor-counter-number">34</span>
+                                            <span class="elementor-suffix">k</span>
+                                        </h4>
+                                        <div class="elementor-counter-title">
+                                            <span>Products</span>
+                                        </div>
+                                    </div> -->
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="cr-about-image" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="800">
+                    <img src="{% static 'img/logo/bg_kida.jpg' %}" alt="side-view">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+  <section class="section-hero padding-b-50 next">
+        <div class="cr-slider ">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="cr-hero-banner cr-banner-image-two">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="cr-left-side-contain">
+                                        <h3>Welcome to <span style="color: green">ML.K.I.D.A</span>, </h3>
+                                        <p> Let machine do the tedious work!</p>
+                                        
+                                          
+{#                                        <p>Why travel far when the best finds are right here? NearYou brings local shopping to your fingertips!</p>#}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+
+            </div>
+{#            <div class="swiper-pagination"></div>#}
+        </div>
+    </section>
+{% endblock %}
+
+

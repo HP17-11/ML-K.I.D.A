@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{#    {% for user in users %}#}
+{#        <h2>{{ user.username }}</h2>#}
+{#        <ul>#}
+{#            <li><a href="{% url 'user_profile' user.id %}">View Profile</a></li>#}
+{#            <li><a href="{% url 'user_login_history' user.username %}">View Login History</a></li>#}
+{#            <li><a href="{% url 'user_video_upload_history' user.username %}">View Video Upload History</a></li>#}
+{#        </ul>#}
+{#    {% endfor %}#}
+
+
+<section class="section-product-banner padding-b-100">
+      <div class="container">
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="mb-30">
+                    <div class="cr-banner" style="padding-top: 20px; color: green ">
+                            <h4> Users of the application</h4>
+                    </div>
+                </div>
+            </div>
+        {% if users %}
+            <div class="row col-50 mb-minus-24">
+          {% for user in users %}
+
+            <div class="col-lg-4 col-md-6 col-sm-6 mb-24">
+              <div class="cr-product-card">
+                <div class="cr-product-banner">
+                  <img
+                    src="{% static 'uploaded/userprofiles/user.png' %}"
+                    alt="product-banner" style="width: 100px; height: 100px"
+                  />
+                  <div class="cr-product-banner-content">
+                    <h5>{{ user.first_name }}</h5>
+                      <p>{{ user.email }}</p>
+{#                    <p><span class="percent">30%</span> Off on first order</p>#}
+                        <div class="cr-product-banner-buttons pt-2" style="display:flex; justify-content:center;text-align: center;">
+                            <a href="{% url 'ownersprofile' user.profile_id %}" class="cr-button" style=" color: white; width: 200px; height: 40px; display: inline-block;">View User History</a>
+                        </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+        {% endfor %}
+          </div>
+        {% else %}
+            <div class="row col-50 mb-minus-24">
+                <h5>Sorry, We are not able to fetch any users!!! </h5>
+            </div>
+        {% endif %}
+
+
+        </div>
+      </div>
+    </section>
+
+
+{% endblock %}
